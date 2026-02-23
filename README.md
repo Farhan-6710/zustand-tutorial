@@ -1,6 +1,6 @@
 # 🎓 Zustand Courses Listing
 
-![Banner](https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=300&fit=crop)
+![Banner](/public//image.png)
 
 A modern course listing application built with React, Zustand for state management, and Vite for blazing-fast development. Features include course management, theme switching, and persistent state.
 

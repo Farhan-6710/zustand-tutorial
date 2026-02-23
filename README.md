@@ -1,73 +1,140 @@
-# React + TypeScript + Vite
+# 🎓 Zustand Courses Listing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Banner](https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=300&fit=crop)
 
-Currently, two official plugins are available:
+A modern course listing application built with React, Zustand for state management, and Vite for blazing-fast development. Features include course management, theme switching, and persistent state.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- 📚 Browse and manage courses
+- ✅ Toggle course completion status
+- 🌓 Dark/Light theme with persistence
+- 💾 State persistence using Zustand middleware
+- 🎨 Clean, responsive UI with Tailwind CSS
+- 🔧 Redux DevTools integration
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Getting Started
 
-## Expanding the ESLint configuration
+### Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Node.js** 18+ or **Bun** 1.0+
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+**With npm:**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**With Bun:**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Install dependencies
+bun install
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Start development server
+bun run dev
+
+# Build for production
+bun run build
 ```
+
+The app will be available at `http://localhost:5173`
+
+## 📁 Project Structure
+
+```
+src/
+├── components/          # React components
+│   ├── CourseItem.jsx   # Individual course card
+│   ├── CourseList.jsx   # Grid of courses
+│   ├── Header.jsx       # App header with branding
+│   ├── Sidebar.jsx      # Navigation & stats
+│   └── ThemeToggle.jsx  # Dark/light mode toggle
+├── store/               # Zustand stores
+│   ├── coursesStore.js  # Course state & actions
+│   ├── themeStore.js    # Theme preferences
+│   └── index.js         # Store exports
+├── constants/           # Static data
+│   └── courses.ts       # Dummy course data
+├── App.jsx              # Root component
+└── main.jsx             # App entry point
+```
+
+## 🏗️ Architecture & Best Practices
+
+### State Management with Zustand
+
+**Store Organization:**
+
+- Each store handles a specific domain (courses, theme)
+- Actions are co-located with state for better organization
+- Middleware (devtools, persist) enhance functionality
+
+**Immutability Pattern:**
+
+```javascript
+// ✅ Correct: Create new references
+set((state) => ({
+  courses: state.courses.map((course) =>
+    course.id === id ? { ...course, completed: !course.completed } : course,
+  ),
+}));
+
+// ❌ Wrong: Mutating state
+state.courses[0].completed = true;
+```
+
+**Selective Subscription:**
+
+```javascript
+// Only re-renders when courses change
+const courses = useCourseStore((state) => state.courses);
+```
+
+### Component Design
+
+- **Functional components** with hooks
+- **Single responsibility** - each component does one thing well
+- **Props drilling avoided** via Zustand
+- **Responsive design** with Tailwind utility classes
+
+### Performance Optimizations
+
+1. **Structural Sharing:** Only creates new objects where data changes
+2. **Selective Subscriptions:** Components subscribe to specific state slices
+3. **Lazy Evaluation:** State updates only trigger necessary re-renders
+
+## 🔧 Tech Stack
+
+- **React 18** - UI library
+- **Zustand** - Lightweight state management
+- **Vite** - Build tool & dev server
+- **Tailwind CSS** - Utility-first styling
+- **Redux DevTools** - State debugging
+
+## 📚 Learning Resources
+
+- [Zustand Documentation](https://docs.pmnd.rs/zustand)
+- [React Patterns](https://react.dev/learn)
+- [Immutability in React](https://react.dev/learn/updating-objects-in-state)
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+## 📄 License
+
+MIT License - feel free to use this project for learning and development.
+
+---
+
+Built with ❤️ using React & Zustand

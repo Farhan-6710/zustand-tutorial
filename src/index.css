@@ -1,27 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #121212;
-  --primary: #fba101;
-  --primary-foreground: #121212;
-  --card: #fafafa;
-  --accent: #e8e8e8;
-  --muted: #eeeeee;
-  --muted-foreground: #717171;
-  --border: #ebebeb;
+  --background: #f8fafc; /* slate-50 */
+  --foreground: #0f172a; /* slate-900 */
+
+  --primary: #6366f1; /* indigo-500 */
+  --primary-foreground: #ffffff;
+
+  --card: #ffffff;
+  --accent: #eef2ff; /* indigo-50 */
+
+  --muted: #e2e8f0; /* slate-200 */
+  --muted-foreground: #475569; /* slate-600 */
+
+  --border: #e2e8f0;
 }
 
 .dark {
-  --background: #070707;
-  --foreground: #ffffff;
-  --primary: #fba101;
-  --primary-foreground: #121212;
-  --card: #0f0f0f;
-  --accent: #222222;
-  --muted: #222222;
-  --muted-foreground: #9e9e9e;
-  --border: #222222;
+  --background: #020617; /* deep slate */
+  --foreground: #e2e8f0;
+
+  --primary: #818cf8; /* indigo-400 */
+  --primary-foreground: #020617;
+
+  --card: #0f172a;
+  --accent: #1e293b;
+
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+
+  --border: #1e293b;
 }
 
 @theme inline {
@@ -45,6 +53,7 @@ body {
 button {
   cursor: pointer;
 }
+
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;

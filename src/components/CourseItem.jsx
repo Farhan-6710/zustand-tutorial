@@ -58,9 +58,6 @@ const CourseItem = ({ course }) => {
                 ? "bg-muted text-muted-foreground hover:bg-muted/80"
                 : "bg-primary text-primary-foreground hover:bg-primary/90"
             }`}
-            aria-label={
-              course.completed ? "Mark as Incomplete" : "Mark as Completed"
-            }
           >
             {course.completed ? "Mark Uncomplete" : "Mark Complete"}
           </button>
@@ -78,6 +75,7 @@ const CourseItem = ({ course }) => {
               strokeWidth={1.5}
               stroke="currentColor"
               className="w-5 h-5"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"

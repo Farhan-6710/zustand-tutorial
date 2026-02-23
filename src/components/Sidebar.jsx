@@ -25,17 +25,21 @@ const Sidebar = ({ top }) => {
   ];
 
   return (
-    <aside className="flex w-full md:w-64 shrink-0 space-y-6">
+    <aside
+      className="flex w-full md:w-64 shrink-0 space-y-6"
+      aria-label="Sidebar navigation"
+    >
       <div
         className="p-4 border-r border-border w-full flex-1"
         style={{ top: `${top}px` }}
       >
         <div className="space-y-6">
-          <nav className="space-y-1">
+          <nav className="space-y-1" aria-label="Main navigation">
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 className="w-full text-left px-3 py-2 rounded-md text-sm flex items-center gap-3 text-foreground hover:bg-muted transition-colors"
+                aria-label={`Navigate to ${link.name}`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -44,6 +48,7 @@ const Sidebar = ({ top }) => {
                   strokeWidth={1.5}
                   stroke="currentColor"
                   className="w-5 h-5"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -56,18 +61,33 @@ const Sidebar = ({ top }) => {
             ))}
           </nav>
 
-          <div className="pt-4 border-t border-border">
-            <h4 className="text-sm font-medium mb-3 text-muted-foreground">
+          <div
+            className="pt-4 border-t border-border"
+            role="region"
+            aria-labelledby="overview-heading"
+          >
+            <h4
+              id="overview-heading"
+              className="text-sm font-medium mb-3 text-muted-foreground"
+            >
               Overview
             </h4>
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-foreground">Total</span>
-                <span className="font-semibold">{totalCourses}</span>
+                <span
+                  className="font-semibold"
+                  aria-label={`Total courses: ${totalCourses}`}
+                >
+                  {totalCourses}
+                </span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-foreground">Completed</span>
-                <span className="font-semibold text-primary">
+                <span
+                  className="font-semibold text-primary"
+                  aria-label={`Completed courses: ${completedCourses}`}
+                >
                   {completedCourses}
                 </span>
               </div>

@@ -28,16 +28,22 @@ function App() {
   // But for better UX let's stick to the store value.
 
   return (
-    <div className="h-screen bg-background text-foreground font-sans flex flex-col">
+    <div className="bg-background text-foreground font-sans flex flex-col">
       <Header ref={headerRef} />
-      <main className="flex-1 flex flex-col md:flex-row gap-4 overflow-hidden">
-        <Sidebar top={headerHeight} />
-        <section className="flex-1 px-4 py-6 flex flex-col gap-6 overflow-y-auto custom-scrollbar">
+      <main className="flex-1 flex flex-col md:flex-row gap-4" role="main">
+        <section
+          className="container mx-auto flex-1 px-4 py-6 flex flex-col gap-6"
+          aria-labelledby="courses-heading"
+          aria-describedby="courses-description"
+        >
           <div className="flex flex-col gap-2">
-            <h2 className="text-3xl font-bold tracking-tight">
+            <h2
+              id="courses-heading"
+              className="text-3xl font-bold tracking-tight"
+            >
               Featured Courses
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground" id="courses-description">
               Expand your skills with our expert-led courses.
             </p>
           </div>

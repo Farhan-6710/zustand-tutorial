@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Header from "./components/Header";
 import CourseList from "./components/CourseList";
 import Sidebar from "./components/Sidebar";
@@ -6,6 +6,14 @@ import { useThemeStore } from "./store";
 
 function App() {
   const theme = useThemeStore((state) => state.theme);
+  const headerRef = useRef(null);
+  const [headerHeight, setHeaderHeight] = useState(0);
+
+  useLayoutEffect(() => {
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.offsetHeight);
+    }
+  }, []);
 
   useEffect(() => {
     if (theme === "dark") {
